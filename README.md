@@ -3,10 +3,10 @@ Run CircleCI jobs on your own infrastructure.
 
 The CircleCI runner is currently in a closed preview. The purpose of this repository is to provide documentation and feedback tracking during the preview period.
 
-### What is the CircleCI runner?
+## What is the CircleCI runner?
 The CircleCI runner allows you to use your own infrastructure for running jobs. This means you’ll be able to  build and test on a wider variety of architectures and environments, as well as giving you additional control over the security of the environment.
 
-### Prerequisites for the runner preview
+## Prerequisites for the runner preview
 To take part in the CircleCI runner preview, you must:
 1. Be on a CircleCI Custom (annual) plan with Gold or Platinum premium support
 1. Be using CircleCI cloud (circleci.com)
@@ -14,7 +14,7 @@ To take part in the CircleCI runner preview, you must:
 1. Have experience in managing infrastructure
 1. Be willing to provide feedback throughout experience with using the runner to help us improve it.
 
-### Why use the runner?
+## Why use the runner?
 There are two key use cases we are aiming to meet with the runner:
 - **Security requirements** - We understand that some customers that require running jobs on on-premises or limited-access infrastructure due to strict security requirements. Some things that the runner enables are:
   - **IP restrictions** - Runners can have static IP addresses that you can control.
@@ -23,7 +23,7 @@ There are two key use cases we are aiming to meet with the runner:
   - **Connect to private networks**
 - **Unique compute requirements** - Customers who need to run jobs on an environment or architecture that CircleCI doesn’t offer as a resource class can use the runner to fill that need.
 
-### How the runner works
+## How the runner works
 Once installed, the runner polls circleci.com for work, runs jobs, and returns status, logs, and artifacts to CircleCI.
 
 The runner consists of two components: the Launch Agent and the Task Agent
@@ -35,7 +35,7 @@ The runner consists of two components: the Launch Agent and the Task Agent
 
 The system has been written to allow agent administrators to configure the `task-agent` to run with a lower level of privileges than the `launch-agent` - as any user who is able to execute a job will be able to gain the same privileges as `task-agent`. The instructions below are for our recommended deployment which follows this approach - Launch Agent will run as `root`, but Task Agent will run as `circleci`.
 
-### Limitations
+## Limitations
 There are a few limitations to be aware of while using the runner preview:
 
 - Only the following platforms are currently supported (we plan to add support for additional platforms soon. If you require support for another platform, please reach out to your account team):
@@ -47,13 +47,13 @@ There are a few limitations to be aware of while using the runner preview:
 - For open source repositories **only**:
   - The Enable Fork PRs setting currently allows any GitHub user to run a build when submitting a PR. Therefore any GitHub user will be able to run a job on the customer-hosted CircleCI runner resource. This can be a security risk, and the customer is responsible for securing their CircleCI runner machine or installation
 
-### How do I get access?
+## How do I get access?
 If you are currently on a CircleCI Custom plan, you can reach out to your account team to request access to the runner preview.
 
-### How to set up the runner
+## How to set up the runner
 If you’re ready to get started, see our runner installation docs.
 
-### Leave us feedback!
+## Leave us feedback!
 We encourage you to leave us feedback on the runner preview by opening an issue on this repository or by reaching out to your CircleCI account team.
 
 ---
