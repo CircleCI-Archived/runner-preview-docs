@@ -3,6 +3,22 @@ Run CircleCI jobs on your own infrastructure.
 
 The CircleCI runner is currently in a closed preview. The purpose of this repository is to provide documentation and feedback tracking during the preview period.
 
+### In this document:
+- [What is the CircleCI runner?](#what-is-the-circleci-runner-)
+- [Prerequisites for the runner preview](#prerequisites-for-the-runner-preview)
+- [Why use the runner?](#why-use-the-runner-)
+- [How the runner works](#how-the-runner-works)
+- [Limitations](#limitations)
+- [How do I get access?](#how-do-i-get-access-)
+- [How to set up the runner](#how-to-set-up-the-runner)
+- [Leave us feedback!](#leave-us-feedback-)
+- [FAQs](#faqs)
+  * [What is the pricing for the CircleCI runner?](#what-is-the-pricing-for-the-circleci-runner-)
+  * [What is the security model for the runner?](#what-is-the-security-model-for-the-runner-)
+  * [How do I install dependencies needed for my jobs?](#how-do-i-install-dependencies-needed-for-my-jobs-)
+  * [How do caching and workspaces and artifacts work with the runner?](#how-do-caching-and-workspaces-and-artifacts-work-with-the-runner-)
+
+
 ## What is the CircleCI runner?
 The CircleCI runner allows you to use your own infrastructure for running jobs. This means you’ll be able to  build and test on a wider variety of architectures and environments, as well as giving you additional control over the security of the environment.
 
@@ -51,14 +67,14 @@ There are a few limitations to be aware of while using the runner preview:
 If you are currently on a CircleCI Custom plan, you can reach out to your account team to request access to the runner preview.
 
 ## How to set up the runner
-If you’re ready to get started, see our runner installation docs.
+If you’re ready to get started, see our [runner installation docs](https://circleci-binary-releases.s3.amazonaws.com/circleci-launch-agent/docs/install.html).
 
 ## Leave us feedback!
-We encourage you to leave us feedback on the runner preview by opening an issue on this repository or by reaching out to your CircleCI account team.
+We encourage you to leave us feedback on the runner preview by [opening an issue](https://github.com/CircleCI-Public/runner-preview-docs/issues/new) on this repository or by reaching out to your CircleCI account team.
 
 ---
 
-# FAQs
+## FAQs
 Frequently asked questions for the CircleCI runner preview
 
 ### What is the pricing for the CircleCI runner?
