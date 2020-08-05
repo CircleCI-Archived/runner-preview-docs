@@ -1,7 +1,10 @@
 # CircleCI runner preview docs
 Run CircleCI jobs on your own infrastructure.
 
-The CircleCI runner is currently in a closed preview. The purpose of this repository is to provide documentation and feedback tracking during the preview period.
+**DISCLAIMER**
+The CircleCI runner is currently in a closed preview. We expect to make changes to the runner and its documentation throughout the preview period based on customer feedback. We will aim to maintain backwards compatibility but do not guarantee it during the preview stage.
+
+The purpose of this repository is to provide documentation and feedback tracking during the preview period.
 
 ### In this document:
 - [What is the CircleCI runner?](#what-is-the-circleci-runner-)
