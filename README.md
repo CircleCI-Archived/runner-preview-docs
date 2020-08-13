@@ -71,7 +71,7 @@ There are a few limitations to be aware of while using the runner preview:
 If you are currently on a CircleCI Custom plan, you can reach out to your account team to request access to the runner preview.
 
 ## How to set up the runner
-If you’re ready to get started, see our [runner installation docs](https://circleci-binary-releases.s3.amazonaws.com/circleci-launch-agent/docs/install.html).
+If you’re ready to get started, see our [runner installation docs](INSTALL.md).
 
 ## Leave us feedback!
 We encourage you to leave us feedback on the runner preview by [opening an issue](https://github.com/CircleCI-Public/runner-preview-docs/issues/new) on this repository or by reaching out to your CircleCI account team.
