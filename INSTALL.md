@@ -4,6 +4,22 @@ Currently only Ubuntu 18.04 running on an AMD64 architecture is officially suppo
 
 ### Prerequisites
 
+#### Authentication
+
+In order to complete this process you'll need to have selected a label for your custom [`resource_class`](#runnerresource_class) and been issued an authentication token for it.
+
+The steps to follow are:
+
+ 1. Decide what namespace you want to place resources under.
+    * This will be associated with your organisation
+    * If you already use orbs, this will be same namespace
+    * You can register a new namespace using the `circleci namespace create` CLI command.
+ 2. Decide on the name of the [`resource class`](#runnerresource_class) you want to use, based on the guidance below.
+ 3. Send the following information to your contact at CircleCI:
+    * Your chosen namespace
+    * Your chosen resource class
+    * A GPG public key - this will be used to securely transmit the authentication token back to you.
+
 #### Installation Tooling
 
 The installation process assumes that the following utilities are installed on the system:
@@ -81,9 +97,9 @@ This is a token used to identify the Launch Agent to CircleCI, it will be provid
 
 #### runner.resource_class
 
-The `resource_class` field is used to uniquely identify the type of resource a job needs. It takes the format of `{{ namespace }}/{{ identifier }}`
+The `resource_class` field is used to uniquely identify the type of resource a job needs. It takes the format of `{{ namespace }}/{{ identifier }}`.
 
-The namespace identifies the organization that owns the resource, while the identifier identifies the specific type of resource. For example, a medium sized docker resource on CircleCI would use `circleci/docker-medium`.
+The namespace identifies the organization that owns the resource, while the identifier identifies the specific type of resource. For example, a medium sized docker resource on CircleCI would use `circleci/docker-medium`. The valid characters for the identifier are letters, numbers, `-` and `_`.
 
 Along with the token, this value will be arranged through your Customer Success Manager.
 
