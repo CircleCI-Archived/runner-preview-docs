@@ -109,3 +109,5 @@ Using the cache, workspace or artifact features will require outbound HTTPS conn
 
 ### How do caching and workspaces and artifacts work with the runner?
 Caches and workspaces and artifacts will be stored in the us-east-1 region of S3. If your runners are not in this region then you may see reduced performance. Although we are not currently charging for runner usage, the transfer and storage of data will incur costs when pricing is introduced.
+
+If you would prefer to take complete control of artifact storage, we recommend avoiding the built-in steps and uploading the artifacts directly to your chosen storage backend.
