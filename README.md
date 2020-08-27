@@ -9,10 +9,10 @@ The purpose of this repository is to provide documentation and feedback tracking
 
 ### In this document:
 - [What is the CircleCI runner?](#what-is-the-circleci-runner-)
-- [Prerequisites for the runner preview](#prerequisites-for-the-runner-preview)
 - [Why use the runner?](#why-use-the-runner-)
 - [How the runner works](#how-the-runner-works)
 - [Limitations](#limitations)
+- [Prerequisites for the runner preview](#prerequisites-for-the-runner-preview)
 - [How do I get access?](#how-do-i-get-access-)
 - [How to set up the runner](#how-to-set-up-the-runner)
 - [Leave us feedback!](#leave-us-feedback-)
@@ -25,14 +25,6 @@ The purpose of this repository is to provide documentation and feedback tracking
 
 ## What is the CircleCI runner?
 The CircleCI runner allows you to use your own infrastructure for running jobs. This means you’ll be able to  build and test on a wider variety of architectures and environments, as well as giving you additional control over the security of the environment.
-
-## Prerequisites for the runner preview
-To take part in the CircleCI runner preview, you must:
-1. Be on a CircleCI Custom (annual) plan with Gold or Platinum premium support
-1. Be using CircleCI cloud (circleci.com)
-1. Request preview access from your CircleCI account team
-1. Have experience in managing infrastructure
-1. Be willing to provide feedback throughout experience with using the runner to help us improve it.
 
 ## Why use the runner?
 There are two key use cases we are aiming to meet with the runner:
@@ -66,6 +58,14 @@ There are a few limitations to be aware of while using the runner preview:
   - Test splitting
 - For open source repositories **only**:
   - The Enable Fork PRs setting currently allows any GitHub user to run a build when submitting a PR. Therefore any GitHub user will be able to run a job on the customer-hosted CircleCI runner resource. This can be a security risk, and the customer is responsible for securing their CircleCI runner machine or installation
+
+## Prerequisites for the runner preview
+To take part in the CircleCI runner preview, you must:
+1. Be on a CircleCI Custom (annual) plan with Gold or Platinum premium support
+1. Be using CircleCI cloud (circleci.com)
+1. Request preview access from your CircleCI account team
+1. Have experience in managing infrastructure
+1. Be willing to provide feedback throughout experience with using the runner to help us improve it.
 
 ## How do I get access?
 If you are currently on a CircleCI Custom plan, you can reach out to your account team to request access to the runner preview.
