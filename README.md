@@ -98,5 +98,16 @@ There are two main approaches available for installing dependencies:
   - This approach is the most secure
   - However it means that if the job’s dependencies change, the runner machine must be reconfigured
 
+### What outbound connectivity is required?
+In order to connect back to CircleCI to receive and execute jobs, outbound HTTPS connections to `runner.circleci.com`, `circleci-binary-releases.s3.amazonaws.com`are required.
+
+Any other required connectivity is dependent on the content of the jobs themselves.
+
+Using the `checkout` step will require access to your VCS provider.
+
+Using the cache, workspace or artifact features will require outbound HTTPS connections to `circle-production-customer-artifacts.s3.amazonaws.com`.
+
 ### How do caching and workspaces and artifacts work with the runner?
 Caches and workspaces and artifacts will be stored in the us-east-1 region of S3. If your runners are not in this region then you may see reduced performance. Although we are not currently charging for runner usage, the transfer and storage of data will incur costs when pricing is introduced.
+
+If you would prefer to take complete control of artifact storage, we recommend avoiding the built-in steps and uploading the artifacts directly to your chosen storage backend.
