@@ -92,7 +92,7 @@ jobs:
       - run: echo "Hi I'm on Runners!"
 ```
 
-That's all you need to do. At this point you should be able to see the job running in your runner.
+The job will then execute using your runner when you push the config to your VCS provider.
 
 ## Leave us feedback!
 We encourage you to leave us feedback on the runner preview by [opening an issue](https://github.com/CircleCI-Public/runner-preview-docs/issues/new) on this repository or by reaching out to your CircleCI account team.
