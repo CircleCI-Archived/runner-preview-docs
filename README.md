@@ -15,6 +15,7 @@ The purpose of this repository is to provide documentation and feedback tracking
 - [Prerequisites for the runner preview](#prerequisites-for-the-runner-preview)
 - [How do I get access?](#how-do-i-get-access-)
 - [How to set up the runner](#how-to-set-up-the-runner)
+- [How to reference your runner on a job](#how-to-reference-your-runner-on-a-job)
 - [Leave us feedback!](#leave-us-feedback-)
 - [FAQs](#faqs)
   * [What is the pricing for the CircleCI runner?](#what-is-the-pricing-for-the-circleci-runner-)
@@ -72,6 +73,26 @@ If you are currently on a CircleCI Custom plan, you can reach out to your accoun
 
 ## How to set up the runner
 If you’re ready to get started, see our [runner installation docs](INSTALL.md).
+
+## How to reference your runner on a job
+After setting up the runner, you will have to reference it on a job. To do so, you will have to set some fields in a special way in your `.circleci/config.yml` file. The fields you have to set for a specific job to run using your runner are: `machine: true` and `resource_class: your-namespace/your-resource`.
+Here's a simple example of how a job could be set up.
+
+```yml
+version: 2.1
+workflows:
+  testing:
+    jobs:
+      - runner
+jobs:
+  runner:
+    machine: true
+    resource_class: your-namespace/your-resource
+    steps:
+      - run: echo "Hi I'm on Runners!"
+```
+
+That's all you need to do. At this point you should be able to see the job running in your runner.
 
 ## Leave us feedback!
 We encourage you to leave us feedback on the runner preview by [opening an issue](https://github.com/CircleCI-Public/runner-preview-docs/issues/new) on this repository or by reaching out to your CircleCI account team.
