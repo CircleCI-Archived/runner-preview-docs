@@ -52,8 +52,8 @@ The system has been written to allow agent administrators to configure the `task
 There are a few limitations to be aware of while using the runner preview:
 
 - Only the following platforms are currently supported (we plan to add support for additional platforms soon. If you require support for another platform, please reach out to your account team):
-  - Ubuntu 16.04 / 18.04 / 20.04
-  - x86 architecture
+  - Ubuntu 18.04
+  - amd64 or arm64 architecture
 - Currently these features of CircleCI are not yet implemented:
   - SSH access to jobs
   - Test splitting
