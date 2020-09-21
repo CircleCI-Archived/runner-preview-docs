@@ -57,6 +57,7 @@ There are a few limitations to be aware of while using the runner preview:
 - Currently these features of CircleCI are not yet implemented:
   - SSH access to jobs
   - Test splitting
+  - [`add_ssh_keys`](https://circleci.com/docs/2.0/configuration-reference/#add_ssh_keys)
 - For open source repositories **only**:
   - The Enable Fork PRs setting currently allows any GitHub user to run a build when submitting a PR. Therefore any GitHub user will be able to run a job on the customer-hosted CircleCI runner resource. This can be a security risk, and the customer is responsible for securing their CircleCI runner machine or installation
 
