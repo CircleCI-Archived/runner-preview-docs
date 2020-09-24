@@ -44,27 +44,17 @@ The Launch Agent can be installed using the following script in a bash shell.
 
 This will use `/opt/circleci` as the base install location.
 
-For AMD64 architecture:
+First, set one of these variables as appropriate for for your installation target.
+
 ```bash
-prefix=/opt/circleci
-sudo mkdir -p "$prefix/workdir"
-base_url="https://circleci-binary-releases.s3.amazonaws.com/circleci-launch-agent"
-echo "Determining latest version of CircleCI Launch Agent"
-agent_version=$(curl "$base_url/release.txt")
-echo "Using CircleCI Launch Agent version $agent_version"
-echo "Downloading and verifying CircleCI Launch Agent Binary"
-curl -sSL "$base_url/$agent_version/checksums.txt" -o checksums.txt
-IFS=" " read -r -a selected <<< "$(grep -F "linux/amd64" checksums.txt)"
-checksum=${selected[0]}
-file=${selected[1]:1}
-mkdir -p "linux/amd64"
-echo "Downloading CircleCI Launch Agent: $file"
-curl --compressed -L "$base_url/$agent_version/$file" -o "$file"
-echo "Verifying CircleCI Launch Agent download"
-sha256sum --check --ignore-missing checksums.txt && chmod +x "$file"; sudo mv "$file" "$prefix/circleci-launch-agent" || echo "Invalid checksum for CircleCI Launch Agent, please try download again"
+# For Linux x86_64
+platform=linux/amd64
+# For Linux ARM
+platform=linux/arm64
 ```
 
-For ARM64 architecture:
+And then run the following steps to download, verify and install the binary.
+
 ```bash
 prefix=/opt/circleci
 sudo mkdir -p "$prefix/workdir"
@@ -74,10 +64,10 @@ agent_version=$(curl "$base_url/release.txt")
 echo "Using CircleCI Launch Agent version $agent_version"
 echo "Downloading and verifying CircleCI Launch Agent Binary"
 curl -sSL "$base_url/$agent_version/checksums.txt" -o checksums.txt
-IFS=" " read -r -a selected <<< "$(grep -F "linux/arm64" checksums.txt)"
+IFS=" " read -r -a selected <<< "$(grep -F "$platform" checksums.txt)"
 checksum=${selected[0]}
 file=${selected[1]:1}
-mkdir -p "linux/arm64"
+mkdir -p "$platform"
 echo "Downloading CircleCI Launch Agent: $file"
 curl --compressed -L "$base_url/$agent_version/$file" -o "$file"
 echo "Verifying CircleCI Launch Agent download"
