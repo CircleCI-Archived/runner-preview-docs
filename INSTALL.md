@@ -10,15 +10,21 @@ In order to complete this process you'll need to have selected a label for your 
 
 The steps to follow are:
 
- 1. Decide what namespace you want to place resources under.
-    * This will be associated with your organisation
-    * If you already use orbs, this will be same namespace
-    * You can register a new namespace using the `circleci namespace create` CLI command.
- 2. Decide on the name of the [`resource class`](#runnerresource_class) you want to use, based on the guidance below.
- 3. Send the following information to your contact at CircleCI:
-    * Your chosen namespace
-    * Your chosen resource class
-    * A GPG public key - this will be used to securely transmit the authentication token back to you.
+1. [Install](https://circleci.com/docs/2.0/local-cli/#installation) the `circleci` command-line tool.
+2. Create a namespace for your organization's runner resources under:
+   * Each organization can only create a single namespace.
+   * If you already use orbs, this will be same namespace as the orbs use.
+   * Use the following command: `circleci namespace create <name> <vcs-type> <org-name>`.
+   * e.g.: `circleci namespace create my-namespace github circleci`.
+3. Create a [`resource class`](#runnerresource_class) for your runner in the above namespace:
+   * Use the following command: `circleci runner resource-class create <resource-class> <description>`.
+   * e.g. `circleci runner resource-class create my-namespace/my-resource-class my-description`
+4. Create a token for authenticating the above resource-class:
+   * Use the following command: `circleci runner token create [--config] <resource-class> <nickname>`.
+   * e.g. `circleci runner token create my-namespace/my-resource-class my-token`.
+   * This will print the authentication token. Note that the token cannot be retrieved again, so store it safely.
+   * It is also possible to generate a runner configuration with the above command, using the `--config` switch.
+   * e.g. `circleci runner token create --config my-namespace/my-resource-class my-token > launch-agent-config.yaml`.
 
 #### Installation Tooling
 
@@ -92,10 +98,10 @@ The configuration file uses the following format, the parameters are explained i
 
 ```yaml
 api:
-  auth_token: {{ api.auth_token }}
+  auth_token: AUTH_TOKEN
 runner:
-  name: {{ runner.name }}
-  resource_class: {{ runner.resource_class }}
+  name: RUNNER_NAME
+  resource_class: NAMESPACE/RESOURCE_CLASS
   command_prefix: ["/opt/circleci/launch-task"]
   working_directory: /opt/circleci/workdir/%s
   cleanup_working_directory: true
