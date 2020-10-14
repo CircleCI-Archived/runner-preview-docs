@@ -1,0 +1,86 @@
+# Installing the CircleCI Runner on macOS
+
+## Create a runner configuration
+Choose a user to run the CircleCI agent as. These instructions will refer to the selected user as `USERNAME`.
+
+Complete the below template, with the various capitalised parameters filled in, and save as `launch-agent-config.yaml`.
+```yaml
+api:
+    auth_token: AUTH_TOKEN
+runner:
+    name: NAME
+    command_prefix : ["sudo", "-niHu", "USERNAME", "--"]
+    working_directory: /tmp/%s
+    cleanup_working_directory: true
+logging:
+    file: /Library/Logs/com.circleci.runner.log
+```
+
+## Install the runner configuration
+Create a directory as root to hold the runner configuration: 
+```bash
+sudo mkdir -p '/Library/Preferences/com.circleci.runner'
+```
+
+Copy the previously created `launch-agent-config.yaml` into the directory:
+```bash
+sudo cp 'launch-agent-config.yaml' '/Library/Preferences/com.circleci.runner/launch-agent-config.yaml'
+```
+
+## Install the launchd .plist
+
+Copy the following to `/Library/LaunchDaemons/com.circleci.runner.plist`, owned by root, with permissions `644`:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>com.circleci.runner</string>
+
+        <key>Program</key>
+        <string>/opt/circleci/circleci-launch-agent</string>
+
+        <key>ProgramArguments</key>
+        <array>
+            <string>circleci-launch-agent</string>
+            <string>--config</string>
+            <string>/Library/Preferences/com.circleci.runner/launch-agent-config.yaml</string>
+        </array>
+
+        <key>RunAtLoad</key>
+        <true/>
+
+        <key>KeepAlive</key>
+        <true/>
+
+        <key>ProcessType</key>
+        <string>Interactive</string>
+
+        <key>ThrottleInterval</key>
+        <integer>30</integer>
+
+        <key>StandardOutPath</key>
+        <string>/dev/null</string>
+
+        <key>StandardErrorPath</key>
+        <string>/dev/null</string>
+    </dict>
+</plist>
+```
+
+## Enable the launchd service
+If you are following these instructions for a second time, you should unload the existing service:
+```bash
+sudo launchctl unload '/Library/LaunchDaemons/com.circleci.runner.plist'
+```
+
+Now load the service:
+```bash
+sudo launchctl load '/Library/LaunchDaemons/com.circleci.runner.plist'
+```
+
+## Verify the service is running
+The macOS application Console can be used to view the logs for the CircleCI agent.
+
+Look under "Log Reports" for the logs called `com.circleci.runner.log`.
