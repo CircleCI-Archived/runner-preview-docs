@@ -136,9 +136,9 @@ Caches and workspaces and artifacts will be stored in the us-east-1 region of S3
 If you would prefer to take complete control of artifact storage, we recommend avoiding the built-in steps and uploading the artifacts directly to your chosen storage backend.
 
 ### What are the best practices for managing state between jobs?
-The runner itself is unopinionated about this. It can be configured to give each job a unique working directory and clean it up afterwards - but this is optional.
+The runner itself is unopinionated about this. It can be configured to give each job a unique working directory and clean it up afterwards - but this is optional. And by default nothing restricts the job from placing files outside of it's working directory.
 
-In general we recommend that jobs rely on as little state as possible, to improve their reducibility - an effective way to do this is to put cleanup steps at the *start* of a job - so that they are guaranteed to run regardless of what happened to a previous job.
+In general we recommend that jobs rely on as little state as possible, to improve their reproducibility. An effective way to do this is to put cleanup steps at the *start* of a job - so that they are guaranteed to run regardless of what happened to a previous job.
 
 It may be possible to reduce build times by making use of caches that persist on the host between jobs, however this is a trade-off against reproducibility - and may also lead to disks filling up over time.
 
