@@ -52,10 +52,11 @@ The system has been written to allow agent administrators to configure the `task
 There are a few limitations to be aware of while using the runner preview:
 
 - Only the following platforms are currently supported (we plan to add support for additional platforms soon. If you require support for another platform, please reach out to your account team):
-  - Ubuntu 18.04
-  - amd64 or arm64 architecture
+  - x86_64 Linux on Ubuntu 18.04 or above
+  - arm64 Linux on Ubuntu 18.04 or above
+  - x86_64 macOS Catalina (10.15.6+) or above
 - Currently these features of CircleCI are not yet implemented:
-  - SSH access to jobs
+  - Rerun with SSH
   - Test splitting
   - [`add_ssh_keys`](https://circleci.com/docs/2.0/configuration-reference/#add_ssh_keys)
 - For open source repositories **only**:
@@ -133,3 +134,14 @@ Using the cache, workspace or artifact features will require outbound HTTPS conn
 Caches and workspaces and artifacts will be stored in the us-east-1 region of S3. If your runners are not in this region then you may see reduced performance. Although we are not currently charging for runner usage, the transfer and storage of data will incur costs when pricing is introduced.
 
 If you would prefer to take complete control of artifact storage, we recommend avoiding the built-in steps and uploading the artifacts directly to your chosen storage backend.
+
+### What are the best practices for managing state between jobs?
+The runner itself is unopinionated about this. It can be configured to give each job a unique working directory and clean it up afterwards - but this is optional. And by default nothing restricts the job from placing files outside of it's working directory.
+
+In general we recommend that jobs rely on as little state as possible, to improve their reproducibility. An effective way to do this is to put cleanup steps at the *start* of a job - so that they are guaranteed to run regardless of what happened to a previous job.
+
+It may be possible to reduce build times by making use of caches that persist on the host between jobs, however this is a trade-off against reproducibility - and may also lead to disks filling up over time.
+
+### Can I run multiple agents on a single host?
+
+Yes, by running multiple replicas of the launch-agent with unique names, it is possible to run as many agents (and therefore jobs) on a single host as you desire. However, care must be taken to ensure that these jobs are sufficiently isolated from each other that they don't conflict if run at the same time.
