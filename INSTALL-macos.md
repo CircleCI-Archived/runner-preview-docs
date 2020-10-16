@@ -8,7 +8,7 @@ Complete the below template, with the various capitalised parameters filled in, 
 api:
     auth_token: AUTH_TOKEN
 runner:
-    name: NAME
+    name: RUNNER_NAME
     command_prefix : ["sudo", "-niHu", "USERNAME", "--"]
     working_directory: /tmp/%s
     cleanup_working_directory: true
