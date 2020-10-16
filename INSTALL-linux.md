@@ -62,41 +62,6 @@ systemd-run \
     --uid "$USER_ID" --unit "$unit" -- "$@"
 ```
 
-## Install the "stop script"
-
-This script will be used by systemd to perform an orderly shutdown of the Launch agent. It will first request that launch agent stops accepting new tasks by sending a `SIGINT` signal, and then it will follow up with a `SIGTERM` to abort the current task if it is still going for too longer.
-
-The wait times in the environment variables should be used to tune how long you wish to wait for shutdown - the `DRAIN_TIMEOUT` should be set slightly longer than your jobs normally take if you want to avoid aborting any jobs early.
-
-Create `/opt/circleci/stop-agent` owned by `root` with permissions `755`
-
-```bash
-#!/bin/bash
-
-set -uo pipefail
-
-## This script performs an orderly shutdown of the agents
-
-# How long to wait for draining to complete
-DRAIN_TIMEOUT=5m
-
-# How long to wait for cancellation to complete
-CANCEL_TIMEOUT=1m
-
-# First send a SIGINT, this tells the launch-agent to stop accepting new tasks
-kill -s SIGINT $MAINPID
-timeout $DRAIN_TIMEOUT tail --pid=$MAINPID -f /dev/null
-
-# If the process is still running, then SIGTERM to cancel the running task
-if [ $? -eq 124 ]; then
-    kill -SIGTERM $MAINPID
-    timeout $CANCEL_TIMEOUT tail --pid=$MAINPID -f /dev/null
-fi
-
-# If the process is _still_ running at this point, we'll leave systemd to
-# perform a SIGKILL and forcibly shut down the process
-```
-
 ## Enable the systemd unit
 
 Create `/opt/circleci/circleci.service` owned by `root` with permissions `755`.
@@ -115,7 +80,6 @@ Restart=always
 User=root
 NotifyAccess=exec
 TimeoutStopSec=600
-ExecStop=/opt/circleci/stop-agent
 [Install]
 WantedBy = multi-user.target
 ```
