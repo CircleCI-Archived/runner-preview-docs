@@ -21,16 +21,14 @@ The steps to follow are:
    * Each organization can only create a single namespace.
    * If you already use orbs, this will be same namespace as the orbs use.
    * Use the following command: `circleci namespace create <name> <vcs-type> <org-name>`.
-   * e.g.: `circleci namespace create my-namespace github circleci`.
+   * e.g. If your GitHub URL is https://github.com/circleci, then: `circleci namespace create my-namespace github circleci`.
 3. Create a [`resource class`](#runnerresource_class) for your runner in the above namespace:
    * Use the following command: `circleci runner resource-class create <resource-class> <description>`.
    * e.g. `circleci runner resource-class create my-namespace/my-resource-class my-description`
 4. Create a token for authenticating the above resource-class:
    * Use the following command: `circleci runner token create [--config] <resource-class> <nickname>`.
    * e.g. `circleci runner token create my-namespace/my-resource-class my-token`.
-   * This will print the authentication token. Note that the token cannot be retrieved again, so store it safely.
-   * It is also possible to generate a runner configuration with the above command, using the `--config` switch.
-   * e.g. `circleci runner token create --config my-namespace/my-resource-class my-token > launch-agent-config.yaml`.
+   * This will print a generated Runner config including the authentication token. Note that the token cannot be retrieved again, so store it safely.
 
 ### Installation Tooling
 
