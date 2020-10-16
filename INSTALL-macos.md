@@ -51,18 +51,25 @@ Copy the following to `/Library/LaunchDaemons/com.circleci.runner.plist`, owned 
         <key>RunAtLoad</key>
         <true/>
 
+        <!-- The agent needs to run at all times -->
         <key>KeepAlive</key>
         <true/>
 
+        <!-- This prevents macOS from limiting the resource usage of the agent -->
         <key>ProcessType</key>
         <string>Interactive</string>
 
+        <!-- Increase the frequency of restarting the agent on failure, or post-update -->
         <key>ThrottleInterval</key>
-        <integer>30</integer>
+        <integer>3</integer>
 
+        <!-- Wait for 10 minutes for the agent to shut down (the agent itself waits for tasks to complete) -->
+        <key>ExitTimeOut</key>
+        <integer>600</integer>
+
+        <!-- The agent uses its own logging and rotation to file -->
         <key>StandardOutPath</key>
         <string>/dev/null</string>
-
         <key>StandardErrorPath</key>
         <string>/dev/null</string>
     </dict>
