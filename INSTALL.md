@@ -12,9 +12,7 @@ Running in a container is not supported at this time.
 
 ### Authentication
 
-In order to complete this process you'll need to have selected a label for your custom [`resource_class`](#runnerresource_class) and been issued an authentication token for it.
-
-The steps to follow are:
+In order to complete this process you'll need to create a namespace, resource-class and authentication token:
 
 1. [Install](https://circleci.com/docs/2.0/local-cli/#installation) the `circleci` command-line tool.
 2. Create a namespace for your organization's runner resources under:
@@ -22,11 +20,11 @@ The steps to follow are:
    * If you already use orbs, this will be same namespace as the orbs use.
    * Use the following command: `circleci namespace create <name> <vcs-type> <org-name>`.
    * e.g. If your GitHub URL is https://github.com/circleci, then: `circleci namespace create my-namespace github circleci`.
-3. Create a [`resource class`](#runnerresource_class) for your runner in the above namespace:
+3. Create a `resource class` for your runner in the above namespace:
    * Use the following command: `circleci runner resource-class create <resource-class> <description>`.
    * e.g. `circleci runner resource-class create my-namespace/my-resource-class my-description`
 4. Create a token for authenticating the above resource-class:
-   * Use the following command: `circleci runner token create [--config] <resource-class> <nickname>`.
+   * Use the following command: `circleci runner token create <resource-class> <nickname>`.
    * e.g. `circleci runner token create my-namespace/my-resource-class my-token`.
    * This will print a generated Runner config including the authentication token. Note that the token cannot be retrieved again, so store it safely.
 
@@ -35,7 +33,7 @@ The steps to follow are:
 The installation process assumes that the following utilities are installed on the system:
 
 * curl (installed by default on macOS)
-* sha256sum (installed as part of `coreutils` on Linux, installed by default on macOS)
+* sha256sum (installed as part of `coreutils` on Linux `apt`/`yum`, macOS via `brew`)
 * systemd version `235+` (Linux only)
 
 Installation also requires permissions to create a user, and create directories under `/opt`.
