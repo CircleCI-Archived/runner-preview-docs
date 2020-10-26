@@ -53,7 +53,9 @@ unit="circleci-$CIRCLECI_LAUNCH_ID"
 
 # When this process exits, tell the systemd unit to shut down
 abort() {
-  systemctl stop "$unit"
+  if systemctl is-active --quiet "$unit"; then
+    systemctl stop "$unit"
+  fi
 }
 trap abort EXIT
 
