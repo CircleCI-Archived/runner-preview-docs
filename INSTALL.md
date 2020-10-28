@@ -141,6 +141,16 @@ The default value is `false`.
 
 ### runner.max_run_time
 
-This can be used to override the default maximum time the Task Agent will run each job.
+This can be used to override the default maximum duration the Task Agent will run each job.
+
+The value is a string with the following unit identifiers `h`, `m` or `s` for hour minute and seconds respectively:
+
+A few valid examples
+
+* `72h`    - 3 days 
+* `1h30m`  - 1 hour 30 minutes
+* `30s`    - 30 seconds
+* `50m`    - 50 minutes
+* `1h30m20s`  - An overly specific (yet still valid) duration.
 
 The default value is 5 hours.
