@@ -138,3 +138,9 @@ If `%s` is present in the value, it will be replaced with a different value for 
 This allows for control of working directory cleanup after each job.
 
 The default value is `false`.
+
+### runner.max_run_time
+
+This can be used to override the default maximum time the Task Agent will run each job.
+
+The default value is 5 hours.
