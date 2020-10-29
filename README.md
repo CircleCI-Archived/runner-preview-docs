@@ -39,6 +39,8 @@ There are two key use cases we are aiming to meet with the runner:
 ## How the runner works
 Once installed, the runner polls circleci.com for work, runs jobs, and returns status, logs, and artifacts to CircleCI.
 
+When the runner is not running a job it will auto-update itself when a new version is released.
+
 The runner consists of two components: the Launch Agent and the Task Agent
 
  - *Launch Agent* (`launch-agent`) - manages gathering the information required to run a task. It also downloads and launches a Task Agent process
@@ -121,8 +123,10 @@ There are two main approaches available for installing dependencies:
   - This approach is the most secure
   - However it means that if the job’s dependencies change, the runner machine must be reconfigured
 
-### What outbound connectivity is required?
+### What connectivity is required?
 In order to connect back to CircleCI to receive and execute jobs, outbound HTTPS connections to `runner.circleci.com`, `circleci-binary-releases.s3.amazonaws.com`are required.
+
+No inbound connectivity is required by runner.
 
 Any other required connectivity is dependent on the content of the jobs themselves.
 
