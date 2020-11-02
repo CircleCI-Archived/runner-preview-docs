@@ -61,8 +61,19 @@ There are a few limitations to be aware of while using the runner preview:
   - Rerun with SSH
   - Test splitting
   - [`add_ssh_keys`](https://circleci.com/docs/2.0/configuration-reference/#add_ssh_keys)
-- For open source repositories **only**:
-  - The Enable Fork PRs setting currently allows any GitHub user to run a build when submitting a PR. Therefore any GitHub user will be able to run a job on the customer-hosted CircleCI runner resource. This can be a security risk, and the customer is responsible for securing their CircleCI runner machine or installation
+
+## Public repositories
+
+**CircleCI Runner is not recommended for use with public projects that have the "Build forked pull requests" setting enabled.**
+
+In this case, a malicious actor may alter your machine or execute code on it by forking your repository, committing code, and opening a pull request.
+
+Untrusted jobs running on your CircleCI Runner pose significant security risks for your machine and network environment, especially if your machine persists its environment between jobs. Some of the risks include:
+
+* Malicious programs running on the machine.
+* Escaping the machine's runner sandbox.
+* Exposing access to the machine's network environment.
+* Persisting unwanted or dangerous data on the machine.
 
 ## Prerequisites for the runner preview
 To take part in the CircleCI runner preview, you must:
