@@ -57,6 +57,7 @@ There are a few limitations to be aware of while using the runner preview:
   - x86_64 Linux on Ubuntu 18.04 or above
   - arm64 Linux on Ubuntu 18.04 or above
   - x86_64 macOS Catalina (10.15.6+) or above
+  - Docker via the [circleci/runner][] docker image
 - Currently these features of CircleCI are not yet implemented:
   - Rerun with SSH
   - Test splitting
@@ -160,3 +161,5 @@ It may be possible to reduce build times by making use of caches that persist on
 ### Can I run multiple agents on a single host?
 
 Yes, by running multiple replicas of the launch-agent with unique names, it is possible to run as many agents (and therefore jobs) on a single host as you desire. However, care must be taken to ensure that these jobs are sufficiently isolated from each other that they don't conflict if run at the same time.
+
+[circleci/runner]: https://hub.docker.com/r/circleci/runner
