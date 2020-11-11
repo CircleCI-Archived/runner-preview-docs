@@ -97,6 +97,7 @@ sha256sum --check --ignore-missing checksums.txt && chmod +x "$file"; sudo cp "$
 Please refer to the platform-specific installation instructions:
 * [linux](./INSTALL-linux.md)
 * [macOS](./INSTALL-macos.md)
+* [docker](./INSTALL-docker.md)
 
 ## Configuration file reference
 
